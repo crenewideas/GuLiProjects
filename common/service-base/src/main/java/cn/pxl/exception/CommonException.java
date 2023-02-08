@@ -6,15 +6,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
 public class CommonException extends RuntimeException{
     @ApiModelProperty(value = "状态码")
     private Integer resultCode;
     private String message;
 
     public CommonException(ResultEnum resultEnum){
-        this.setResultCode(Integer.parseInt(resultEnum.getCode()));
+        this.setResultCode(resultEnum.getCode());
         this.setMessage(resultEnum.getMessage());
+    }
+
+    public CommonException(Integer resultCode,String message){
+        this.setResultCode(resultCode);
+        this.setMessage(message);
     }
 
     @Override

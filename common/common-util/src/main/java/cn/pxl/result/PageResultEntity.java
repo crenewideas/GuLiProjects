@@ -12,5 +12,5 @@ public  class PageResultEntity <T>{
     private long pageSize;
     private long totalNbr;
     private long totalSize;
-    private List<T> data;
+    private List<T> rows;
 }

@@ -1,7 +1,9 @@
 package cn.pxl.eduservice.entity;
 
+import cn.pxl.eduservice.entity.vo.TimeVo;
 import com.baomidou.mybatisplus.annotation.*;
 
+import java.sql.Time;
 import java.util.Date;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -23,7 +25,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @TableName("edu_teacher")
 @ApiModel(value="Teacher对象", description="讲师")
-public class Teacher implements Serializable {
+public class Teacher extends TimeVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -53,14 +55,5 @@ public class Teacher implements Serializable {
     //状态：0生效，1冻结
     @TableLogic
     private Integer isDeleted;
-
-    @ApiModelProperty(value = "创建时间")
-    @TableField(fill = FieldFill.INSERT)
-    private Date gmtCreate;
-
-    @ApiModelProperty(value = "更新时间")
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Date gmtModified;
-
 
 }
