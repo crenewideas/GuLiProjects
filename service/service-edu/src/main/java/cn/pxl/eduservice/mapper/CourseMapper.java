@@ -1,6 +1,7 @@
 package cn.pxl.eduservice.mapper;
 
 import cn.pxl.eduservice.entity.Course;
+import cn.pxl.eduservice.entity.vo.CoursePublishVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -12,5 +13,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2023-02-06
  */
 public interface CourseMapper extends BaseMapper<Course> {
-
+    CoursePublishVo getCoursePublishInfoById(String id);
 }

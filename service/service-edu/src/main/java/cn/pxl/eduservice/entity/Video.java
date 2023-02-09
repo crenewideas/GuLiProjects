@@ -1,5 +1,6 @@
 package cn.pxl.eduservice.entity;
 
+import cn.pxl.eduservice.entity.vo.TimeVo;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
@@ -24,7 +25,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @TableName("edu_video")
 @ApiModel(value="Video对象", description="课程视频")
-public class Video implements Serializable {
+public class Video extends TimeVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -67,12 +68,5 @@ public class Video implements Serializable {
 
     @ApiModelProperty(value = "乐观锁")
     private Long version;
-
-    @ApiModelProperty(value = "创建时间")
-    private Date gmtCreate;
-
-    @ApiModelProperty(value = "更新时间")
-    private Date gmtModified;
-
 
 }

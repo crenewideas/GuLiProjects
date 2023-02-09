@@ -17,4 +17,6 @@ import java.util.List;
  */
 public interface ChapterService extends IService<Chapter> {
     ArrayList<ChapterVo> nestedList(String courseId);
+
+    void removeChapterById(String courseId);
 }

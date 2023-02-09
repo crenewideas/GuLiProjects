@@ -2,12 +2,15 @@ package cn.pxl.eduservice.controller;
 
 
 import cn.pxl.eduservice.entity.Subject;
+import cn.pxl.eduservice.entity.vo.CoursePublishVo;
 import cn.pxl.eduservice.entity.vo.SubjectNestedVo;
+import cn.pxl.eduservice.service.CourseService;
 import cn.pxl.eduservice.service.SubjectService;
 import cn.pxl.result.ResultEntity;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +36,9 @@ public class SubjectController {
     @Autowired
     private SubjectService subjectService;
 
+    @Autowired
+    private CourseService courseService;
+
     //添加课程分类
     @ApiOperation(value = "Excel批量导入数据")
     @PostMapping("/addSubject")
@@ -50,6 +56,25 @@ public class SubjectController {
     public ResultEntity<ArrayList<SubjectNestedVo>> getNestedTreeList() {
         //1 获取全部课程信息
         return subjectService.nestedList();
+    }
+
+    @ApiOperation(value = "根据ID获取课程发布信息")
+    @GetMapping("/getCoursePublishInfoById/{id}")
+    public ResultEntity<CoursePublishVo> getCoursePublishInfoById(
+            @ApiParam(name = "id", value = "课程ID", required = true)
+            @PathVariable String id){
+
+        CoursePublishVo courseInfoForm = courseService.getCoursePublishInfoById(id);
+        return ResultEntity.success(courseInfoForm);
+    }
+
+    @ApiOperation(value = "根据id发布课程")
+    @PutMapping("/publishCourseById/{id}")
+    public ResultEntity publishCourseById(
+            @ApiParam(name = "id", value = "课程ID", required = true)
+            @PathVariable String id){
+        courseService.publishCourseById(id);
+        return ResultEntity.success();
     }
 }
 
